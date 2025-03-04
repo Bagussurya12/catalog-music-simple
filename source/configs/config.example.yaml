@@ -1,0 +1,6 @@
+service:
+  port: ":8000"
+  secretJWT : "sample-secret-jwt"
+
+database:
+  dataSourceName: "root:password@tcp(localhost:3307)/catalog-music-simple?parseTime=true"
