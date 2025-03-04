@@ -1,6 +1,6 @@
 # Catalog Music Simple
 
-Catalog Music Simple is a backend project built using **Go (Golang)**, designed to provide a platform for catalog music. This project is part of the Learn Go initiative.
+Catalog Music Simple is a backend project built using **Go (Golang)**, designed to provide a platform for catalog music with API Spotify. This project is part of the Learn Go initiative.
 
 ---
 
@@ -38,7 +38,7 @@ The project utilizes the following technologies:
 1. **Clone the repository**
    ```sh
    git clone https://github.com/bagussurya12/catalog-music-simple.git
-   cd discuss-forum
+   cd catalog-music-simple
    ```
 2. **Run the project using Docker**
    ```sh
