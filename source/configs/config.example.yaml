@@ -3,4 +3,4 @@ service:
   secretJWT : "sample-secret-jwt"
 
 database:
-  dataSourceName: "root:password@tcp(localhost:3307)/catalog-music-simple?parseTime=true"
+  dataSourceName: "postgres://postgres:root@localhost:5431/catalog-music-simple/sslmode=disable"
