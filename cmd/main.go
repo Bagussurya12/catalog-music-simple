@@ -5,6 +5,7 @@ import (
 
 	"github.com/Bagussurya12/catalog-music-simple/pkg/internalsql"
 	"github.com/Bagussurya12/catalog-music-simple/source/configs"
+	"github.com/Bagussurya12/catalog-music-simple/source/models/memberships"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,6 +32,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed connect to database, err: %+v", err)
 	}
+
+	db.AutoMigrate(&memberships.User{})
 
 	r := gin.Default()
 	r.Run(cfg.Service.Port)
