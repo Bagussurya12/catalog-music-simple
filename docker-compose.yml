@@ -3,10 +3,13 @@ services:
     image: postgres:latest
     container_name: catalog-music-simple
     ports:
-      - "5432:5432"
+      - "5431:5432"
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres  
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: catalog-music-simple
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
