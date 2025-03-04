@@ -1,6 +1,6 @@
-# Discuss Forum 🗣️
+# Catalog Music Simple
 
-Discuss Forum is a backend project built using **Go (Golang)**, designed to provide a platform for discussions and interactions. This project is part of the Learn Go initiative.
+Catalog Music Simple is a backend project built using **Go (Golang)**, designed to provide a platform for catalog music. This project is part of the Learn Go initiative.
 
 ---
 
@@ -29,14 +29,15 @@ The project utilizes the following technologies:
 
 - 🏗 Built with Golang for high performance
 - 🐳 Dockerized for easy deployment
-- 💾 MySQL as the database
-- 📡 API testing using Postman
+- 💾 Postgre Sql as the database
+- Gorm For ORM 
+
 
 ## 🔧 Setup & Installation
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/bagussurya12/discuss-forum.git
+   git clone https://github.com/bagussurya12/catalog-music-simple.git
    cd discuss-forum
    ```
 2. **Run the project using Docker**
@@ -53,5 +54,5 @@ This project is licensed under the MIT License.
 
 ---
 
-Made with ❤️ using Go, Docker, MySQL, and Postman.
+Made with ❤️ using Go, Docker, Postgresql, and Gorm.
 
