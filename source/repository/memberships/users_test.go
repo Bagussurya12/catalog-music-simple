@@ -153,6 +153,19 @@ func Test_repository_GetUser(t *testing.T) {
 				// mock.ExpectCommit()
 			},
 		},
+		{
+			name: "error",
+			args: args{
+				email:    "bagus@mailtest.com",
+				username: "bagus",
+			},
+			want:    nil,
+			wantErr: true,
+			mockFn: func(args args) {
+				// mock.ExpectBegin()
+				mock.ExpectQuery(`SELECT \* FROM "users" .+`).WithArgs(args.email, args.username, args.id, 1).WillReturnError(assert.AnError)
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
