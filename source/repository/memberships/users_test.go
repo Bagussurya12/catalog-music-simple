@@ -59,6 +59,35 @@ func Test_repository_CreateUser(t *testing.T) {
 				mock.ExpectCommit()
 			},
 		},
+		{
+			name: "error",
+			args: args{
+				model: memberships.User{
+					Email:     "bagus@mailtest.com",
+					Username:  "bagus",
+					Password:  "password",
+					CreatedBy: "bagus@mailtest.com",
+					UpdatedBy: "bagus@mailtest.com",
+				},
+			},
+			wantErr: true,
+			mockFn: func(args args) {
+				mock.ExpectBegin()
+
+				mock.ExpectQuery(`INSERT INTO "users" (.+) VALUES (.*)`).WithArgs(
+					args.model.Email,
+					args.model.Username,
+					args.model.Password,
+					args.model.CreatedBy,
+					args.model.UpdatedBy,
+					sqlmock.AnyArg(),
+					sqlmock.AnyArg(),
+					sqlmock.AnyArg(),
+				).
+					WillReturnError(assert.AnError)
+				mock.ExpectRollback()
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
