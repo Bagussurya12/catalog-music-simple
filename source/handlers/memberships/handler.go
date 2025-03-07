@@ -19,3 +19,8 @@ func NewHandler(api *gin.Engine, service service) *Handler {
 		service,
 	}
 }
+
+func (h *Handler) RegisterRoute() {
+	route := h.Group("/memberships")
+	route.POST("/signup", h.SignUp)
+}
