@@ -148,9 +148,9 @@ func Test_repository_GetUser(t *testing.T) {
 			},
 			wantErr: false,
 			mockFn: func(args args) {
-				mock.ExpectBegin()
-				mock.ExpectQuery(`SELECT FROM "users" .+`).WithArgs(args.email, args.username, args.id).WillReturnRows(sqlmock.NewRows([]string{"id", "created_at", "updated_at", "email", "username", "password", "created_by", "updated_by"}).AddRow(1, now, now, "bagus@mailtest.com", "bagus", "password", "bagus@mailtest.com", "bagus@mailtest.com"))
-				mock.ExpectCommit()
+				// mock.ExpectBegin()
+				mock.ExpectQuery(`SELECT \* FROM "users" .+`).WithArgs(args.email, args.username, args.id, 1).WillReturnRows(sqlmock.NewRows([]string{"id", "created_at", "updated_at", "email", "username", "password", "created_by", "updated_by"}).AddRow(1, now, now, "bagus@mailtest.com", "bagus", "password", "bagus@mailtest.com", "bagus@mailtest.com"))
+				// mock.ExpectCommit()
 			},
 		},
 	}
