@@ -3,7 +3,7 @@ package memberships
 import "github.com/Bagussurya12/catalog-music-simple/source/models/memberships"
 
 func (r *repository) CreateUser(model memberships.User) error {
-	return r.db.Create(model).Error
+	return r.db.Create(&model).Error
 }
 
 func (r *repository) GetUser(email, username string, id uint) (*memberships.User, error) {
