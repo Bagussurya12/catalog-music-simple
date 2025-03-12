@@ -3,6 +3,7 @@ package memberships
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -34,6 +35,17 @@ func TestHandler_SignUp(t *testing.T) {
 				}).Return(nil)
 			},
 			expectedStatuCode: 201,
+		},
+		{
+			name: "failed",
+			mockFn: func() {
+				mockSvc.EXPECT().Signup(memberships.SignUpRequest{
+					Email:    "test@mail.com",
+					Username: "testuser",
+					Password: "password",
+				}).Return(errors.New("username or email exist"))
+			},
+			expectedStatuCode: 400,
 		},
 	}
 	for _, tt := range tests {
