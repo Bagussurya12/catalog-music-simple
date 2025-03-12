@@ -6,6 +6,7 @@ import (
 
 	"github.com/Bagussurya12/catalog-music-simple/source/configs"
 	"github.com/Bagussurya12/catalog-music-simple/source/models/memberships"
+	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
 )
 
@@ -38,6 +39,20 @@ func Test_service_Signup(t *testing.T) {
 			mockFn: func(args args) {
 				mockRepo.EXPECT().GetUser(args.request.Email, args.request.Username, uint(0)).Return(nil, sql.ErrNoRows)
 				mockRepo.EXPECT().CreateUser(gomock.Any()).Return(nil)
+			},
+		},
+		{
+			name: "failed get user",
+			args: args{
+				request: memberships.SignUpRequest{
+					Email:    "test@mail.com",
+					Username: "testUser",
+					Password: "password",
+				},
+			},
+			wantErr: true,
+			mockFn: func(args args) {
+				mockRepo.EXPECT().GetUser(args.request.Email, args.request.Username, uint(0)).Return(nil, assert.AnError)
 			},
 		},
 	}
