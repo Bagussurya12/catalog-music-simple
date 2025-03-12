@@ -1,19 +1,21 @@
 package memberships
 
 import (
-	"github.com/Bagussurya12/catalog-music-simple/source/models/memberships"
+	models "github.com/Bagussurya12/catalog-music-simple/source/models/memberships"
 	"github.com/gin-gonic/gin"
 )
 
-type service interface {
-	Signup(request memberships.SignUpRequest) error
+//go:generate mockgen -source=handler.go -destination=handler_mock_test.go -package=memberships
+
+type Service interface {
+	Signup(request models.SignUpRequest) error
 }
 type Handler struct {
 	*gin.Engine
-	service service
+	service Service
 }
 
-func NewHandler(api *gin.Engine, service service) *Handler {
+func NewHandler(api *gin.Engine, service Service) *Handler {
 	return &Handler{
 		api,
 		service,
