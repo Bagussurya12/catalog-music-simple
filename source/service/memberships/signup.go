@@ -13,7 +13,7 @@ func (s *service) Signup(request memberships.SignUpRequest) error {
 
 	userExist, err := s.repository.GetUser(request.Email, request.Username, 0)
 
-	if err != nil || err != sql.ErrNoRows {
+	if err != nil && err != sql.ErrNoRows {
 		log.Error().Err(err).Msg("Failed to Get User")
 
 		return err
