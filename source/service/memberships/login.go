@@ -2,6 +2,7 @@ package memberships
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/Bagussurya12/catalog-music-simple/pkg/jwt"
 	"github.com/Bagussurya12/catalog-music-simple/source/models/memberships"
@@ -24,6 +25,7 @@ func (s *service) Login(request memberships.LoginRequest) (string, error) {
 	err = bcrypt.CompareHashAndPassword([]byte(userDetail.Password), []byte(request.Password))
 
 	if err != nil {
+		fmt.Println("test case password not match")
 		return "", errors.New("password or email not found")
 	}
 
