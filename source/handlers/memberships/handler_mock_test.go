@@ -16,32 +16,47 @@ import (
 	gomock "go.uber.org/mock/gomock"
 )
 
-// Mockservice is a mock of service interface.
-type Mockservice struct {
+// MockService is a mock of Service interface.
+type MockService struct {
 	ctrl     *gomock.Controller
-	recorder *MockserviceMockRecorder
+	recorder *MockServiceMockRecorder
 	isgomock struct{}
 }
 
-// MockserviceMockRecorder is the mock recorder for Mockservice.
-type MockserviceMockRecorder struct {
-	mock *Mockservice
+// MockServiceMockRecorder is the mock recorder for MockService.
+type MockServiceMockRecorder struct {
+	mock *MockService
 }
 
-// NewMockservice creates a new mock instance.
-func NewMockservice(ctrl *gomock.Controller) *Mockservice {
-	mock := &Mockservice{ctrl: ctrl}
-	mock.recorder = &MockserviceMockRecorder{mock}
+// NewMockService creates a new mock instance.
+func NewMockService(ctrl *gomock.Controller) *MockService {
+	mock := &MockService{ctrl: ctrl}
+	mock.recorder = &MockServiceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *Mockservice) EXPECT() *MockserviceMockRecorder {
+func (m *MockService) EXPECT() *MockServiceMockRecorder {
 	return m.recorder
 }
 
+// Login mocks base method.
+func (m *MockService) Login(request memberships.LoginRequest) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Login", request)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Login indicates an expected call of Login.
+func (mr *MockServiceMockRecorder) Login(request any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockService)(nil).Login), request)
+}
+
 // Signup mocks base method.
-func (m *Mockservice) Signup(request memberships.SignUpRequest) error {
+func (m *MockService) Signup(request memberships.SignUpRequest) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Signup", request)
 	ret0, _ := ret[0].(error)
@@ -49,7 +64,7 @@ func (m *Mockservice) Signup(request memberships.SignUpRequest) error {
 }
 
 // Signup indicates an expected call of Signup.
-func (mr *MockserviceMockRecorder) Signup(request any) *gomock.Call {
+func (mr *MockServiceMockRecorder) Signup(request any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Signup", reflect.TypeOf((*Mockservice)(nil).Signup), request)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Signup", reflect.TypeOf((*MockService)(nil).Signup), request)
 }
