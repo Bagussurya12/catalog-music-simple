@@ -9,6 +9,7 @@ import (
 
 type Service interface {
 	Signup(request models.SignUpRequest) error
+	Login(request models.LoginRequest) (string, error)
 }
 type Handler struct {
 	*gin.Engine
@@ -25,4 +26,5 @@ func NewHandler(api *gin.Engine, service Service) *Handler {
 func (h *Handler) RegisterRoute() {
 	route := h.Group("/memberships")
 	route.POST("/signup", h.SignUp)
+	route.POST("/login", h.Login)
 }
