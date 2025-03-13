@@ -18,7 +18,7 @@ func TestHandler_SignUp(t *testing.T) {
 	ctrlMock := gomock.NewController(t)
 	defer ctrlMock.Finish()
 
-	mockSvc := NewMockservice(ctrlMock)
+	mockSvc := NewMockService(ctrlMock)
 
 	tests := []struct {
 		name              string
